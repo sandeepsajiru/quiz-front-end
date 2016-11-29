@@ -1,0 +1,72 @@
+[
+  {
+    "name": "CSS Quiz",
+    "level": "Beginner",
+    "authorUsername": "palash",
+    "domain": "css",
+    "attemptedby": 0,
+    "questions": [
+      {
+        "qtitle": "Question 1",
+        "qtype": "multi",
+        "options": ["op1","op2","op3","op4"]
+      }
+    ]
+  },
+  {
+    "name": "CSS Quiz",
+    "level": "Intermediate",
+    "authorUsername": "palash",
+    "domain": "css",
+    "attemptedby": 0,
+    "questions": [
+      {
+        "qtitle": "Question 1",
+        "qtype": "multi",
+        "options": ["op1","op2","op3","op4"]
+      }
+    ]
+  },
+  {
+    "name": "TypeScript Quiz",
+    "level": "Beginner",
+    "authorUsername": "aman",
+    "domain": "typescript",
+    "attemptedby": 0,
+    "questions": [
+      {
+        "qtitle": "Question 1",
+        "qtype": "multi",
+        "options": ["op1","op2","op3","op4"]
+      }
+    ]
+  },
+  {
+    "name": "C Quiz",
+    "level": "Beginner",
+    "authorUsername": "palash",
+    "domain": "c",
+    "attemptedby": 0,
+    "questions": [
+      {
+        "qtitle": "Question 1",
+        "qtype": "multi",
+        "options": ["op1","op2","op3","op4"]
+      }
+    ]
+  },
+  {
+    "name": "C Quiz",
+    "level": "Expert",
+    "authorUsername": "gopalcm",
+    "domain": "c",
+    "attemptedby": 0,
+    "questions": [
+      {
+        "qtitle": "Question 1",
+        "qtype": "multi",
+        "options": ["op1","op2","op3","op4"]
+      }
+    ]
+  }
+]
