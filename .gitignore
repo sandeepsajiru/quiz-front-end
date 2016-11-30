@@ -1,2 +1,7 @@
+.idea
+typings
 bower_components
 node_modules
+
+jsconfig.json
+typings.json

@@ -3,16 +3,18 @@
   <head>
     <meta charset="utf-8">
     <title>Quiz App</title>
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/custom.css" media="screen" />
   </head>
   <body ng-controller="mainController">
-    <ng-include src="templates/headerbar.html"  onload=""  autoscroll=""></ng-include>
-    <ng-view  onload=""  $autoscroll=""></ng-view>
+    <div ng-include="'templates/headerbar.html'"></div>
+    <div ng-view></div>
 
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="js/quizfe.js"></script>
+    <script src="js/controllers.js"></script>
   </body>
 </html>
