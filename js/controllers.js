@@ -6,8 +6,16 @@ app.controller('mainController',['$scope', function($scope){
 
 }])
 
-app.controller('quizzerController',['$scope', function($scope, $http) {
-  $http.get('data/quizzes.json').then(function(res){
-    $scope.quizzes = res.data
+app.controller('quizListController', function($scope, quizService) {
+
+  quizService.getAllQuizzes().success(function (qs) {
+    $scope.quizzes = qs
+  }).error(function(error) {
+    $scope.status = 'Cannot load data'
   })
+})
+
+app.controller('quizController',['$scope', function($scope, $routeParams, quizService){
+  var requestedQuizID = $routeParams.param
+  $scope.quiz = quizService.getQuiz(requestedQuizID)
 }])

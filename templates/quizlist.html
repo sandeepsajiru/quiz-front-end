@@ -1,13 +1,21 @@
 <div class="quizlist">
+  <div class="page-header">
+    <h1>All Quizzes <small>{{quizzes.count}}</small></h1>
+  </div>
   <div class="container">
     <div class="row">
-      <div class="col-md-4">
-        <h2>{{qz.name}}</h2>
-        <p>
-          {{qz.description}}
-        </p>
-        <small>{{qz.attempted}}</small>
-        <small>{{qz.author}}</small>
+      <div class="quiztile" ng-repeat="qz in quizzes">
+        <div class="col-md-4">
+          <a class="list-group-item" ng-href="/quiz/{{qz.id}}">
+            <h2 class="">{{qz.name}}</h2>
+            <p>
+              <span class="badge"> {{qz.level}}</span>
+            </p>
+            <div>Attempted by <span class="badge">{{qz.attemptedby}}</span></div>
+            <div>{{qz.author}}</div>
+          </a>
+        </div>
+        <div class="col-md-1"></div>
       </div>
     </div>
   </div>

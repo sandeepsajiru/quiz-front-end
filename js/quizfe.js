@@ -1,6 +1,7 @@
 var app = angular.module('quizApp', ['ngRoute'])
 
-app.config(function($routeProvider) {
+app.config(function ($routeProvider, $locationProvider) {
+
   $routeProvider.when("/", {
     templateUrl: "templates/dashboard.html",
     controller: "homeController"
@@ -9,8 +10,13 @@ app.config(function($routeProvider) {
     controller: "addQuizController"
   }).when("/all", {
     templateUrl: "templates/quizlist.html",
-    controller: "quizzerController"
+    controller: "quizListController"
+  }).when("/quiz/:quizid", {
+    templateUrl: "templates/quizlist.html",
+    controller: "quizController"
   }).otherwise({
     redirectTo: '/login'
   })
+
+  $locationProvider.html5Mode(true);
 })

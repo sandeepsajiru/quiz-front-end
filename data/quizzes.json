@@ -1,5 +1,6 @@
 [
   {
+    "id": 1,
     "name": "CSS Quiz",
     "level": "Beginner",
     "authorUsername": "palash",
@@ -14,6 +15,7 @@
     ]
   },
   {
+    "id": 2,
     "name": "CSS Quiz",
     "level": "Intermediate",
     "authorUsername": "palash",
@@ -28,6 +30,7 @@
     ]
   },
   {
+    "id": 3,
     "name": "TypeScript Quiz",
     "level": "Beginner",
     "authorUsername": "aman",
@@ -42,6 +45,7 @@
     ]
   },
   {
+    "id": 4,
     "name": "C Quiz",
     "level": "Beginner",
     "authorUsername": "palash",
@@ -56,6 +60,7 @@
     ]
   },
   {
+    "id": 5,
     "name": "C Quiz",
     "level": "Expert",
     "authorUsername": "gopalcm",
