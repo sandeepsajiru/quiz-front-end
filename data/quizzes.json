@@ -11,6 +11,11 @@
         "qtitle": "Question 1",
         "qtype": "multi",
         "options": ["op1","op2","op3","op4"]
+      },
+       {
+        "qtitle": "Question 2",
+        "qtype": "multi",
+        "options": ["op1","op2","op3","op4"]
       }
     ]
   },

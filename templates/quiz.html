@@ -1,0 +1,20 @@
+<div class="quiz">
+    <div class="page-header">
+        <h1>{{quiz.name}} <span class="badge">{{quiz.level}}</span></h1>
+    </div>
+    <div class="container">
+        <div class="row" ng-repeat="question in quiz.questions">
+            <div class="col-md-10">
+                <h1>{{question.qtitle}}</h1>
+            </div>
+            <div class="col-md-8">
+                <ul>
+                    <li class="input-group" ng-repeat="option in question.options">
+                        <input type="radio" ng-model="option" name="{{question}}" value="{{option}}" required /> {{option}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">$(this).removeAttr('checked')</script>

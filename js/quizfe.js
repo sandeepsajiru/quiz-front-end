@@ -12,7 +12,7 @@ app.config(function ($routeProvider, $locationProvider) {
     templateUrl: "templates/quizlist.html",
     controller: "quizListController"
   }).when("/quiz/:quizid", {
-    templateUrl: "templates/quizlist.html",
+    templateUrl: "templates/quiz.html",
     controller: "quizController"
   }).otherwise({
     redirectTo: '/login'

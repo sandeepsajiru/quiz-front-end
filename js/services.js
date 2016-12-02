@@ -1,23 +1,19 @@
 app.factory('quizService', ['$http', function ($http) {
 
-var url = './data/quizzes.json'
-var quizSvc = {}
+    var url = './data/quizzes.json'
+    var quizSvc = {}
 
-getData = function() {
-  return $http.get(url)
-}
+    getData = function () {
+        return $http.get(url).success(function (res) {
+            return res
+        })
+    }
 
-quizData = getData()
+    var quizData = getData()
 
-quizSvc.getAllQuizzes = function() {
-    return quizData
-}
+    quizSvc.getAllQuizzes = function () {
+        return quizData
+    }
 
-quizSvc.getQuiz = function(quizid) {
-  for (var i=0; i < quizData.length; i++)
-    if (quizData[i][id] == quizid)
-      return quizData[i];
-}
-
-return quizSvc
+    return quizSvc
 }])
