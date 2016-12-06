@@ -78,5 +78,20 @@
         "options": ["op1","op2","op3","op4"]
       }
     ]
+  },
+  {
+    "id": 6,
+    "name": "C++ Quiz",
+    "level": "Expert",
+    "authorUsername": "gopalcm",
+    "domain": "c",
+    "attemptedby": 0,
+    "questions": [
+      {
+        "qtitle": "Question 1",
+        "qtype": "multi",
+        "options": ["op1","op2","op3","op4"]
+      }
+    ]
   }
 ]
