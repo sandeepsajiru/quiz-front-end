@@ -4,16 +4,16 @@ app.config(function ($routeProvider, $locationProvider) {
 
   $routeProvider.when("/", {
     templateUrl: "templates/dashboard.html",
-    controller: "homeController"
+    controller: "homeCtrl"
   }).when("/addquiz", {
     templateUrl: "templates/addquiz.html",
-    controller: "addQuizController"
+    controller: "addQuizCtrl"
   }).when("/all", {
     templateUrl: "templates/quizlist.html",
-    controller: "quizListController"
+    controller: "quizListCtrl"
   }).when("/quiz/:quizid", {
     templateUrl: "templates/quiz.html",
-    controller: "quizController"
+    controller: "quizCtrl"
   }).otherwise({
     redirectTo: '/login'
   })

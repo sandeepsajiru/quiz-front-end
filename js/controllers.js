@@ -1,25 +1,25 @@
-app.controller('homeController', ['$scope', function ($scope) {
+app.controller('homeCtrl', ['$scope', function ($scope) {
 
 }])
 
-app.controller('mainController', ['$scope', function ($scope) {
+app.controller('mainCtrl', ['$scope', function ($scope) {
 
 }])
 
-app.controller('quizListController', function ($scope, quizService) {
+app.controller('quizListCtrl', function ($scope, quizService) {
 
-  quizService.getAllQuizzes().success(function (qs) {
+  quizService.getAllQuizzes().then(function (qs) {
     $scope.quizzes = qs
     console.log(qs)
-  }).error(function (error) {
+  }, function (error) {
     $scope.status = 'Cannot load data'
   })
 })
 
-app.controller('quizController', function ($scope, $routeParams, quizService) {
+app.controller('quizCtrl', function ($scope, $routeParams, quizService) {
   var quizid = $routeParams.quizid
 
-  quizService.getAllQuizzes().success(function (qarray) {
+  quizService.getAllQuizzes().then(function (qarray) {
     console.log(qarray)
     for (var i = 0; i < qarray.length; i++)
       if (qarray[i].id == quizid) {
@@ -28,3 +28,7 @@ app.controller('quizController', function ($scope, $routeParams, quizService) {
       }
   })
 })
+
+app.controller('addQuizCtrl', ['$scope', function ($scope) {
+
+}])

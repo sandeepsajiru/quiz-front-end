@@ -4,13 +4,12 @@ app.factory('quizService', ['$http', function ($http) {
     var quizSvc = {}
 
     getData = function () {
-        return $http.get(url).success(function (res) {
-            return res
+        return $http.get(url).then(function (res) {
+            return res.data
         })
     }
 
     var quizData = getData()
-
     quizSvc.getAllQuizzes = function () {
         return quizData
     }
