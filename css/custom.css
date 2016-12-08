@@ -5,4 +5,20 @@ body {
   margin: 0 auto;
 }
 
+/* Styles for quiz*/
+.quiz-ques {
+  padding: 10px 10px 10px 10px;
+  border-radius: 15px;
+}
+
+label.btn {
+  text-align: left;
+  transform: scale(1.0);
+  transition-duration: .2s;
+}
+
+label.btn:hover {
+  transform: scale(1.05);
+}
+
 
