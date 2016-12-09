@@ -14,9 +14,12 @@ app.config(function ($routeProvider, $locationProvider) {
   }).when("/quiz/:quizid", {
     templateUrl: "templates/quiz.html",
     controller: "quizCtrl"
+  }).when("/edit/:quizid", {
+    templateUrl: "templates/edit.html",
+    controller: "editCtrl"
   }).otherwise({
     redirectTo: '/login'
-  })
+  });
 
   $locationProvider.html5Mode(true);
-})
+});

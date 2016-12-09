@@ -16,9 +16,9 @@
         <button ng-show="currentRole === 'author'" class="btn btn-primary navbar-btn">Create new</button>
       </ul>
       <ul ng-show="username" class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-user"></span> Signed in as  {{currentRole}}</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-user"></span>  {{username}} signed in as  {{currentRole}}</a></li>
         <button ng-click="switchRole()" class="btn btn-primary navbar-btn">
-          <span class="glyphicon glyphicon-log-in"></span> Login as  {{currentRole === 'author' ? 'candidate' : 'author'}}
+          <span class="glyphicon glyphicon-log-in"></span>  Login as  {{currentRole === 'author' ? 'candidate' : 'author'}}
         </button>
       </ul>
     </div>

@@ -32,7 +32,15 @@ app.controller('mainCtrl', function ($scope, $location, loginSvc) {
   };
 });
 
-app.controller('quizListCtrl', function ($scope, quizService) {
+app.controller('quizListCtrl', function ($scope, loginSvc, quizService) {
+  $scope.username = loginSvc.getUsername();
+
+  $scope.$watch(function () {
+    return loginSvc.getCurrentRole();
+
+  }, function (nval, oval) {
+    $scope.currentRole = nval;
+  });
 
   quizService.getAllQuizzes().then(function (qs) {
     $scope.quizzes = qs;

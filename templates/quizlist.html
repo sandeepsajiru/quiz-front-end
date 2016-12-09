@@ -1,19 +1,29 @@
 <div class="quizlist">
   <div class="page-header">
-    <h1>All Quizzes <small>{{quizzes.count}}</small></h1>
+    <h1>All Quizzes
+      <small>{{quizzes.count}}</small>
+    </h1>
   </div>
   <div class="container">
     <div class="row">
-      <div class="quiztile" ng-repeat="qz in quizzes">
-        <div class="col-md-4">
-          <a class="list-group-item" ng-href="/quiz/{{qz.id}}">
-            <h2 class="">{{qz.name}}</h2>
-            <p>
-              <span class="badge"> {{qz.level}}</span>
-            </p>
-            <div>Attempted by <span class="badge">{{qz.attemptedby}}</span></div>
-            <div>{{qz.author}}</div>
-          </a>
+      <div class="quiztile">
+        <div class="col-md-6 col-md-offset-1">
+          <div class="list-group">
+            <div class="list-group-item" ng-repeat="qz in quizzes">
+              <a ng-href="/quiz/{{qz.id}}">
+              <div>
+                <span class="quizname">{{qz.name}}</span>
+                <span class="badge"> {{qz.level}}</span>
+              </div>
+              <!--<span class="quiz-subtitle"> Attempted by <span class="badge">{{qz.attemptedby}}</span></span>-->
+              <span class="quiz-subtitle">Authored by {{qz.authorUsername}}
+                <a ng-show="currentRole === 'author' && qz.authorUsername === username" ng-href="/edit/{{qz.id}}">
+                  <i class="glyphicon glyphicon-pencil"></i>
+                </a>
+              </span>
+              </a>
+            </div>
+          </div>
         </div>
         <div class="col-md-1"></div>
       </div>
