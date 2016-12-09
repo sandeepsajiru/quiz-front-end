@@ -13,7 +13,7 @@
         <li><a href="/all">All Quizzes</a></li>
         <li><a href="#">History</a></li>
         <li><a href="#">Leaderboard</a></li>
-        <button ng-show="currentRole === 'author'" class="btn btn-primary navbar-btn">Create new</button>
+        <a ng-show="currentRole === 'author'" ng-href="/add"><button class="btn btn-primary navbar-btn">Create new</button></a>
       </ul>
       <ul ng-show="username" class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span>  {{username}} signed in as  {{currentRole}}</a></li>

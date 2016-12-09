@@ -20,6 +20,11 @@ body {
   text-decoration: none;
 }
 
+.new-option {
+  padding-left: 15px;
+  padding-bottom: 10px;
+}
+
 .quiz-subtitle {
   font-size: small;
 }

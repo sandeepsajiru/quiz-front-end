@@ -5,9 +5,9 @@ app.config(function ($routeProvider, $locationProvider) {
   $routeProvider.when("/", {
     templateUrl: "templates/dashboard.html",
     controller: "homeCtrl"
-  }).when("/addquiz", {
-    templateUrl: "templates/addquiz.html",
-    controller: "addQuizCtrl"
+  }).when("/add", {
+    templateUrl: "templates/add.html",
+    controller: "addCtrl"
   }).when("/all", {
     templateUrl: "templates/quizlist.html",
     controller: "quizListCtrl"
