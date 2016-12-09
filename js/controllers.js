@@ -1,10 +1,36 @@
-app.controller('homeCtrl', ['$scope', function ($scope) {
+app.controller('homeCtrl', function ($scope, $location, loginSvc) {
 
-}]);
+  $scope.authorLogin = function (name) {
+    loginSvc.authorSignin(name);
+  };
 
-app.controller('mainCtrl', ['$scope', function ($scope) {
+  $scope.candidateLogin = function (name) {
+    loginSvc.candidateSignin(name)
+  }
+});
 
-}]);
+app.controller('mainCtrl', function ($scope, $location, loginSvc) {
+  $scope.username = loginSvc.getUsername();
+  $scope.currentRole = loginSvc.getCurrentRole();
+
+  $scope.$watch(function () {
+    return loginSvc.getUsername();
+
+  }, function (nval, oval) {
+    $scope.username = nval;
+  });
+
+  $scope.$watch(function () {
+    return loginSvc.getCurrentRole();
+
+  }, function (nval, oval) {
+    $scope.currentRole = nval;
+  });
+
+  $scope.switchRole = function () {
+    loginSvc.switchRole();
+  };
+});
 
 app.controller('quizListCtrl', function ($scope, quizService) {
 
@@ -28,14 +54,14 @@ app.controller('quizCtrl', function ($scope, $routeParams, quizService) {
       }
   });
 
-  $scope.answersRegister = [0,0,0,0];
+  $scope.answersRegister = [-1, -1, -1, -1];
   $scope.quizOngoing = false;
 
   $scope.startQuiz = function () {
     $scope.quizOngoing = true;
   };
 
-  $scope.selectOption = function (parentIndex,index) {
+  $scope.selectOption = function (parentIndex, index) {
     $scope.answersRegister[parentIndex] = index;
     console.log($scope.answersRegister);
   };

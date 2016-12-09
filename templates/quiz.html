@@ -5,11 +5,11 @@
   <div class="container">
     <div class="row " ng-repeat="question in quiz.questions">
       <div class="col-md-10 col-md-offset-1">
-        <h1 class="quiz-ques">{{question.qtitle}}</h1>
+        <h3 class="quiz-ques">{{question.qtitle}}</h3>
       </div>
       <div class="col-md-5 col-md-offset-1 quiz-options" data-toggle="buttons">
-        <label ng-repeat="option in question.options" ng-click="selectOption($parent.$index,$index)" class="element-animation1 btn btn-lg btn-primary btn-block">
-          <span class="btn-label"><i class="glyphicon glyphicon-ok-circle"></i></span>
+        <label ng-repeat="option in question.options" ng-click="selectOption($parent.$index,$index)" class="btn btn-lg btn-primary btn-block">
+          <span class="btn-label"><i class="glyphicon" ng-class="answersRegister[$parent.$index] == $index ? 'glyphicon-ok-sign' : 'glyphicon-ok-circle'"></i></span>
           <input type="radio" ng-model="option" name="{{question}}" value="{{option}}">{{option}}
         </label>
       </div>
