@@ -11,6 +11,11 @@ body {
   padding-left: 10px;
 }
 
+.difficulty-chooser {
+  padding-bottom: 15px;
+  margin: 0 auto;
+}
+
 /* Styles for quiz*/
 .quizname {
   font-size: large;

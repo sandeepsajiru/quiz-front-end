@@ -87,17 +87,18 @@ app.controller('addCtrl', function ($scope, $http, loginSvc) {
   $scope.quizdomain = '';
   $scope.questions = [{
     qtitle: "",
-    options: ['', '']
+    options: ['','']
   }];
 
   $scope.addNewOption = function (_ques) {
     $scope.questions[_ques].options.push('');
+    // console.log($scope.questions[_ques].options)
   };
 
   $scope.addNewQuestion = function () {
     $scope.questions.push({
       qtitle: "",
-      options: ['', '']
+      options: ['','']
     });
   };
 
@@ -106,7 +107,12 @@ app.controller('addCtrl', function ($scope, $http, loginSvc) {
   };
 
   $scope.removeOption = function (_ques, _opt) {
-    $scope.questions[_ques].options.splice(_opt,1);
+    $scope.questions[_ques].qtitle;
+  };
+
+  $scope.getLevel = function (_level) {
+    $scope.quizlevel = _level;
+    console.log(_level);
   };
 
   $scope.submit = function () {
@@ -154,12 +160,13 @@ app.controller('editCtrl', function ($scope, $http, $routeParams, quizService, l
 
   $scope.addNewOption = function (_ques) {
     $scope.questions[_ques].options.push('');
+    // console.log($scope.questions[_ques].options)
   };
 
   $scope.addNewQuestion = function () {
     $scope.questions.push({
       qtitle: "",
-      options: ['', '']
+      options: ['','']
     });
   };
 
@@ -168,7 +175,7 @@ app.controller('editCtrl', function ($scope, $http, $routeParams, quizService, l
   };
 
   $scope.removeOption = function (_ques, _opt) {
-    $scope.questions[_ques].options.splice(_opt,1);
+    $scope.questions[_ques].qtitle;
   };
 
   $scope.update = function () {

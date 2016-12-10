@@ -1,7 +1,15 @@
+<form>
 <div class="form-group col-md-8 col-md-offset-1">
   <div class="page-header">
     <h1><input type="text" ng-model="quizname" placeholder="Quiz name" required></h1>
   </div>
+  <div class="row difficulty-chooser">
+  <div class="btn-group col-md-6" role="group">
+    <button type="button" class="btn btn-default" ng-click="getLevel('Beginner')">Beginner</button>
+    <button type="button" class="btn btn-default" ng-click="getLevel('Intermediate')">Intermediate</button>
+    <button type="button" class="btn btn-default" ng-click="getLevel('Expert')">Expert</button>
+  </div></div>
+
   <div class="panel panel-default" ng-repeat="question in questions track by $index">
     <div class="panel-heading">
       <div class="input-group">
@@ -16,7 +24,7 @@
     </div>
     <div class="panel-body" ng-repeat="option in question.options track by $index">
       <div class="input-group">
-        <input class="form-control" type="text" ng-model="option" placeholder="option">
+        <input class="form-control" type="text" ng-model="question.options[$index]" placeholder="option">
         <span class="input-group-btn">
       <button ng-click="removeOption($parent.$index,$index)" class="btn btn-danger btn-sm">
         <i class="glyphicon glyphicon-minus"></i>
@@ -40,4 +48,4 @@
     </button>
   </div>
 </div>
-
+</form>
