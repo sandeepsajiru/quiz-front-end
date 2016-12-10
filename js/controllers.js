@@ -53,19 +53,23 @@ app.controller('quizListCtrl', function ($scope, loginSvc, quizService) {
 });
 
 
-app.controller('quizCtrl', function ($scope, $routeParams, quizService) {
+app.controller('quizCtrl', function ($scope, $http, $routeParams, quizService, loginSvc) {
   var quizid = $routeParams.quizid;
 
   quizService.getAllQuizzes().then(function (qarray) {
-    console.log(qarray);
+    // console.log(qarray);
     for (var i = 0; i < qarray.length; i++)
       if (qarray[i].id == quizid) {
         $scope.quiz = qarray[i];
+        console.log($scope.quiz.questions.length);
         break
       }
+
+    $scope.answersRegister = new Array($scope.quiz.questions.length);
+    $scope.answersRegister.fill(-1);
+    console.log($scope.answersRegister);
   });
 
-  $scope.answersRegister = [-1, -1, -1, -1];
   $scope.quizOngoing = false;
 
   $scope.startQuiz = function () {
@@ -77,6 +81,24 @@ app.controller('quizCtrl', function ($scope, $routeParams, quizService) {
     console.log($scope.answersRegister);
   };
 
+  $scope.submitAnswers = function () {
+    var data = JSON.stringify({
+      "quizid": quizid,
+      "answers": $scope.answersRegister,
+      "username": loginSvc.getUsername()
+    });
+
+    $http.post('/api/quiz/addresponses', data).then(function (response) {
+      if (response.data)
+        $scope.msg = "Updated";
+    }, function (response) {
+      $scope.msg = "Error";
+      $scope.statusval = response.status;
+      $scope.statustext = response.statusText;
+      $scope.headers = response.headers();
+
+    });
+  }
 });
 
 
