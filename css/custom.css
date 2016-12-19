@@ -16,6 +16,22 @@ body {
   margin: 0 auto;
 }
 
+/* Quizlist */
+.quiztile .quiz:hover {
+  background-color: #337AB7;
+  color: white;
+  transition-duration: .3s;
+}
+
+.quiztile .quiz:hover a {
+  color: white;
+  transition-duration: .3s;
+}
+
+.pager-div li,span{
+  display: inline-block;
+}
+
 /* Styles for quiz*/
 .quizname {
   font-size: large;
