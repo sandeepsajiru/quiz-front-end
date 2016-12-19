@@ -36,6 +36,9 @@ app.controller('mainCtrl', function ($scope, $location, loginSvc) {
 
 app.controller('quizListCtrl', function ($scope, loginSvc, quizService) {
   $scope.username = loginSvc.getUsername();
+  $scope.currentPage = 0;
+  $scope.pageLength = 5;
+  $scope.quizzes = [];
 
   $scope.$watch(function () {
     return loginSvc.getCurrentRole();
@@ -46,10 +49,16 @@ app.controller('quizListCtrl', function ($scope, loginSvc, quizService) {
 
   quizService.getAllQuizzes().then(function (qs) {
     $scope.quizzes = qs;
-    console.log(qs)
+
+    $scope.noOfPages = function () {
+      return Math.ceil($scope.quizzes.length/$scope.pageLength);
+    };
+
+    console.log($scope.noOfPages());
   }, function (error) {
     $scope.status = 'Cannot load data'
   })
+
 });
 
 

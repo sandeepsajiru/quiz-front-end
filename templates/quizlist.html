@@ -1,22 +1,23 @@
 <div class="quizlist">
   <div class="page-header">
     <h1>All Quizzes
-      <small>{{quizzes.count}}</small>
+      <small>{{quizzes.length}}</small>
     </h1>
   </div>
   <div class="container">
     <div class="row">
       <div class="quiztile">
-        <div class="col-md-6 col-md-offset-1">
-          <div class="list-group">
-            <div class="list-group-item" ng-repeat="qz in quizzes">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="list-group" ng-show="quizzes.length">
+            <div class="list-group-item quiz"
+                 ng-repeat="qz in quizzes | pager: currentPage * pageLength | limitTo: pageLength">
               <a ng-href="/quiz/{{qz.id}}">
-              <div>
-                <span class="quizname">{{qz.name}}</span>
-                <span class="badge"> {{qz.level}}</span>
-              </div>
-              <!--<span class="quiz-subtitle"> Attempted by <span class="badge">{{qz.attemptedby}}</span></span>-->
-              <span class="quiz-subtitle">Authored by {{qz.authorUsername}}
+                <div>
+                  <span class="quizname">{{qz.name}}</span>
+                  <span class="badge"> {{qz.level}}</span>
+                </div>
+                <!--<span class="quiz-subtitle"> Attempted by <span class="badge">{{qz.attemptedby}}</span></span>-->
+                <span class="quiz-subtitle">Authored by {{qz.authorUsername}}
                 <a ng-show="currentRole === 'author' && qz.authorUsername === username" ng-href="/edit/{{qz.id}}">
                   <i class="glyphicon glyphicon-pencil"></i>
                 </a>
@@ -25,7 +26,26 @@
             </div>
           </div>
         </div>
-        <div class="col-md-1"></div>
+
+        <div class="col-md-4 col-md-offset-4 pager-div" ng-show="quizzes.length">
+          <ul>
+            <li>
+              <button class="btn" type="button" ng-disabled="currentPage == 0"
+                      ng-click="currentPage = currentPage-1">PREV
+              </button>
+            </li>
+            <li>
+              <span>Page {{currentPage + 1}} of {{ noOfPages() }}</span>
+            </li>
+            <li>
+              <button class="btn" type="button"
+                      ng-disabled="currentPage >= quizzes.length/pageLength - 1"
+                      ng-click="currentPage = currentPage+1">NEXT
+              </button>
+            </li>
+          </ul>
+        </div>
+
       </div>
     </div>
   </div>
