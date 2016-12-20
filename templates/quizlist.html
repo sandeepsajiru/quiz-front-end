@@ -8,9 +8,19 @@
     <div class="row">
       <div class="quiztile">
         <div class="col-md-6 col-md-offset-3">
+
+          <form>
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                <input type="text" class="form-control" placeholder="Search all quizzes" ng-model="searchQuiz">
+              </div>
+            </div>
+          </form>
+
           <div class="list-group" ng-show="quizzes.length">
             <div class="list-group-item quiz"
-                 ng-repeat="qz in quizzes | pager: currentPage * pageLength | limitTo: pageLength">
+                 ng-repeat="qz in quizzes | filter: searchQuiz | pager: currentPage * pageLength | limitTo: pageLength">
               <a ng-href="/quiz/{{qz.id}}">
                 <div>
                   <span class="quizname">{{qz.name}}</span>

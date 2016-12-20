@@ -39,6 +39,7 @@ app.controller('quizListCtrl', function ($scope, loginSvc, quizService) {
   $scope.currentPage = 0;
   $scope.pageLength = 5;
   $scope.quizzes = [];
+  $scope.searchQuiz = '';
 
   $scope.$watch(function () {
     return loginSvc.getCurrentRole();
