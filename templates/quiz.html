@@ -16,14 +16,29 @@
         <video src="{{question.qcode}}" height="360px"></video>
       </div>
 
-      <div class="panel-body quiz-options" ng-repeat="option in question.options" data-toggle="buttons">
+      <div ng-show="question.qtype === 'single'">
+      <div class="panel-body quiz-options"  ng-repeat="option in question.options" data-toggle="buttons">
         <label ng-click="selectOption($parent.$index,$index)" class="btn btn-lg btn-primary btn-block">
           <span class="btn-label">
-            <i class="glyphicon" ng-class="answersRegister[$parent.$index] == $index ? 'glyphicon-ok-sign' : 'glyphicon-ok-circle'"></i>
+            <i class="glyphicon" ng-class="answersRegister[$parent.$index].indexOf($index) !== -1 ? 'glyphicon-ok-sign' : 'glyphicon-ok-circle'"></i>
           </span>
           <input type="radio" ng-model="option" name="{{question}}" value="{{option}}">{{option}}
         </label>
       </div>
+      </div>
+
+      <div ng-show="question.qtype === 'multi'">
+      <div class="panel-body quiz-options" ng-repeat="option in question.options" data-toggle="buttons">
+        <label ng-click="toggleOption($parent.$index,$index)" class="btn btn-lg btn-primary btn-block">
+          <span class="btn-label">
+            <i class="glyphicon" ng-class="answersRegister[$parent.$index].indexOf($index) !== -1 ? 'glyphicon-record' : 'glyphicon-unchecked'"></i>
+          </span>
+          <input type="checkbox" ng-model="option" name="{{question}}" value="{{option}}">{{option}}
+        </label>
+      </div>
+      </div>
+
+      <div class="alert" ng-show="">{{question.reason}}</div>
     </div>
 
     <button ng-click="submitAnswers()" class="btn btn-danger">

@@ -76,7 +76,9 @@ app.controller('quizCtrl', function ($scope, $http, $routeParams, quizService, l
       }
 
     $scope.answersRegister = new Array($scope.quiz.questions.length);
-    $scope.answersRegister.fill(-1);
+    for(i=0;i<$scope.answersRegister.length;i++) {
+      $scope.answersRegister[i] = [];
+    }
     console.log($scope.answersRegister);
   });
 
@@ -86,9 +88,25 @@ app.controller('quizCtrl', function ($scope, $http, $routeParams, quizService, l
     $scope.quizOngoing = true;
   };
 
+  var showReason = function () {
+
+  };
+
   $scope.selectOption = function (parentIndex, index) {
-    $scope.answersRegister[parentIndex] = index;
+    $scope.answersRegister[parentIndex] = [index];
     console.log($scope.answersRegister);
+    showReason();
+  };
+
+  $scope.toggleOption = function (parentIndex, index) {
+    if($scope.answersRegister[parentIndex].indexOf(index) === -1)
+      $scope.answersRegister[parentIndex].push(index);
+    else {
+      let opinReg = $scope.answersRegister[parentIndex].indexOf(index);
+      $scope.answersRegister[parentIndex].splice(opinReg,1);
+    }
+    console.log($scope.answersRegister);
+    showReason();
   };
 
   $scope.submitAnswers = function () {
@@ -207,7 +225,7 @@ app.controller('editCtrl', function ($scope, $http, $routeParams, quizService, l
   };
 
   $scope.removeOption = function (_ques, _opt) {
-    $scope.questions[_ques].qtitle;
+    $scope.questions[_ques].options.splice(_opt,1);
   };
 
   $scope.update = function () {

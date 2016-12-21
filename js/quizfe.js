@@ -1,4 +1,4 @@
-var app = angular.module('quizApp', ['ngRoute'])
+var app = angular.module('quizApp', ['ngRoute']);
 
 app.config(function ($routeProvider, $locationProvider) {
 

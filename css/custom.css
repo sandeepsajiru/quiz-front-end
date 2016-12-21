@@ -65,4 +65,11 @@ label.btn:hover {
   transform: scale(1.05);
 }
 
+.quiz-code {
+  border-radius: 2%;
+  border:thin;
+  background-color: #e3e3e3;
+  font-family: Consolas, monospace;
+  padding: 20px;
+}
 
