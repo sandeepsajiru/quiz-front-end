@@ -7,6 +7,15 @@
       <div class="panel-heading">
         <h3 class="quiz-ques">{{question.qtitle}}</h3>
       </div>
+
+      <div class="quiz-code" ng-show="question.qcode">{{question.qcode}}</div>
+      <div class="quiz-img" ng-show="question.qimg">
+        <img src="{{question.qimg}}" height="360px">
+      </div>
+      <div class="quiz-vid" ng-show="question.qvid">
+        <video src="{{question.qcode}}" height="360px"></video>
+      </div>
+
       <div class="panel-body quiz-options" ng-repeat="option in question.options" data-toggle="buttons">
         <label ng-click="selectOption($parent.$index,$index)" class="btn btn-lg btn-primary btn-block">
           <span class="btn-label">
