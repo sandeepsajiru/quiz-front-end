@@ -41,8 +41,9 @@ body {
   text-decoration: none;
 }
 
-.new-option {
+.new-option, .attachment {
   padding-left: 15px;
+  padding-right: 15px;
   padding-bottom: 10px;
 }
 
@@ -73,3 +74,7 @@ label.btn:hover {
   padding: 20px;
 }
 
+.codearea {
+  font-family: Consolas,monospace;
+
+}

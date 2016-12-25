@@ -23,3 +23,18 @@ app.config(function ($routeProvider, $locationProvider) {
 
   $locationProvider.html5Mode(true);
 });
+
+app.directive('uploadFiles', function () {
+  return {
+    scope: true,
+    link: function (scope, el, attrs) {
+      el.bind('change', function (event) {
+        var files = event.target.files;
+        for (var i = 0; i < files.length; i++) {
+          //emit event upward
+          scope.$emit("addedFile", { file: files[i], q: attrs.name });
+        }
+      });
+    }
+  };
+});

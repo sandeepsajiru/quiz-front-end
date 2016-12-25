@@ -1,51 +1,88 @@
 <form>
-<div class="form-group col-md-8 col-md-offset-1">
-  <div class="page-header">
-    <h1><input type="text" ng-model="quizname" placeholder="Quiz name" required></h1>
-  </div>
-  <div class="row difficulty-chooser">
-  <div class="btn-group col-md-6" role="group">
-    <button type="button" class="btn btn-default" ng-click="getLevel('Beginner')">Beginner</button>
-    <button type="button" class="btn btn-default" ng-click="getLevel('Intermediate')">Intermediate</button>
-    <button type="button" class="btn btn-default" ng-click="getLevel('Expert')">Expert</button>
-  </div></div>
+  <div class="form-group col-md-8 col-md-offset-1">
+    <div class="page-header">
+      <h1><input type="text" ng-model="quizname" placeholder="Quiz name" required></h1>
+    </div>
+    <div class="row difficulty-chooser">
+      <div class="btn-group col-md-6" role="group">
+        <button type="button" class="btn btn-default" ng-click="getLevel('Beginner')">Beginner</button>
+        <button type="button" class="btn btn-default" ng-click="getLevel('Intermediate')">Intermediate</button>
+        <button type="button" class="btn btn-default" ng-click="getLevel('Expert')">Expert</button>
+      </div>
+    </div>
 
-  <div class="panel panel-default" ng-repeat="question in questions track by $index">
-    <div class="panel-heading">
-      <div class="input-group">
-        <input class="form-control" type="text" ng-model="question.qtitle" placeholder="Question title" required>
-        <span class="input-group-btn">
+    <div class="panel panel-default" ng-repeat="question in questions track by $index">
+      <div class="panel-heading">
+        <div class="input-group">
+          <input class="form-control" type="text" ng-model="question.qtitle" placeholder="Question title" required>
+          <span class="input-group-btn">
         <button ng-click="removeQuestion($index)" class="btn btn-danger btn-sm">
           <i class="glyphicon glyphicon-minus"></i>
         </button>
           </span>
+        </div>
+        <div>
+          <textarea class="codearea form-control" rows="5"ng-show="question.qcode" ng-model="question.qcode" placeholder="Code"></textarea>
+        </div>
       </div>
 
-    </div>
-    <div class="panel-body" ng-repeat="option in question.options track by $index">
-      <div class="input-group">
-        <input class="form-control" type="text" ng-model="question.options[$index]" placeholder="option">
-        <span class="input-group-btn">
+      <!-- Single answer question -->
+      <div class="panel-body" ng-show="question.qtype === 'single'"
+           ng-repeat="option in question.options track by $index">
+        <div class="input-group">
+          <span class="input-group-addon" ng-click="setCorrect($parent.$index,$index)">
+            <input name="q{{$parent.$index}}" type="radio"></span>
+          <input class="form-control" type="text" ng-model="question.options[$index]" placeholder="option">
+          <span class="input-group-btn">
       <button ng-click="removeOption($parent.$index,$index)" class="btn btn-danger btn-sm">
         <i class="glyphicon glyphicon-minus"></i>
       </button>
           </span>
+        </div>
+      </div>
+      <!--Multiple answer question-->
+      <div class="panel-body" ng-show="question.qtype === 'multi'"
+           ng-repeat="option in question.options track by $index">
+        <div class="input-group">
+          <span class="input-group-addon" ng-click="setCorrect($parent.$index,$index)">
+            <input name="q{{$parent.$index}}" type="checkbox"></span>
+          <input class="form-control" type="text" ng-model="question.options[$index]" placeholder="option">
+          <span class="input-group-btn">
+      <button ng-click="removeOption($parent.$index,$index)" class="btn btn-danger btn-sm">
+        <i class="glyphicon glyphicon-minus"></i>
+      </button>
+          </span>
+        </div>
+      </div>
+
+      <div class="new-option">
+        <button ng-click="addNewOption($index)" class="btn btn-info btn-sm">
+          <i class="glyphicon glyphicon-plus"></i>  Add a new option</button>
+        <button ng-click="question.files=[]" class="btn btn-info btn-sm">
+          <i class="glyphicon glyphicon-picture"></i>  Add an attachment</button>
+        <button ng-click="question.qcode=' '" class="btn btn-info btn-sm">
+          <i class="glyphicon glyphicon-film"></i>  Add a code snippet</button>
+      </div>
+
+      <div ng-show="question.files" class="attachment">
+        <input type="file" upload-files  />
+      </div>
+
+      <div class="attachment">
+        <input class="form-control" type="text" ng-model="question.reason" placeholder="Explanation (Optional)">
       </div>
     </div>
-    <div class="new-option">
-      <button ng-click="addNewOption($index)" class="btn btn-info btn-sm">
-        <i class="glyphicon glyphicon-plus"></i>
+    <div class="new-question">
+      <button ng-click="addNewQuestion('single')" class="btn btn-info">
+        <i class="glyphicon glyphicon-plus"></i> New question
+      </button>
+      <button ng-click="addNewQuestion('multi')" class="btn btn-info">
+        <i class="glyphicon glyphicon-plus"></i> New multi-answer question
+      </button>
+      <br><br>
+      <button ng-click="submit()" class="btn btn-danger">
+        <i class="glyphicon glyphicon-upload"></i> Create
       </button>
     </div>
   </div>
-  <div class="new-question">
-    <button ng-click="addNewQuestion()" class="btn btn-info">
-      <i class="glyphicon glyphicon-plus"></i> New question
-    </button>
-    &nbsp;
-    <button ng-click="update()" class="btn btn-danger">
-      <i class="glyphicon glyphicon-upload"></i> Update
-    </button>
-  </div>
-</div>
 </form>

@@ -137,6 +137,12 @@ app.controller('addCtrl', function ($scope, $http, loginSvc) {
   $scope.quizdomain = '';
   $scope.questions = [{
     qtitle: "",
+    qtype: "single",
+    qimg: "",
+    qvideo: "",
+    qcode: "",
+    correct: [0],
+    reason: "",
     options: ['','']
   }];
 
@@ -145,11 +151,37 @@ app.controller('addCtrl', function ($scope, $http, loginSvc) {
     // console.log($scope.questions[_ques].options)
   };
 
-  $scope.addNewQuestion = function () {
+  $scope.addNewQuestion = function (_qtype) {
     $scope.questions.push({
       qtitle: "",
+      qid: 0,
+      qtype: _qtype,
+      files: [],
+      qcode: null,
+      correct: [],
+      reason: "",
       options: ['','']
     });
+  };
+
+  $scope.$on("addedFile", function (event, args) {
+    $scope.$apply(function () {
+      $scope.questions[args.q].files.push(args.file);
+    });
+  });
+
+  $scope.setCorrect = function (_ques, _opt) {
+    if($scope.questions[_ques].qtype == "single")
+      $scope.questions[_ques].correct = [_opt];
+    else {
+      if($scope.questions[_ques].correct.indexOf(_opt) === -1)
+        $scope.questions[_ques].correct.push(_opt);
+      else {
+        let opinReg = $scope.questions[_ques].correct.indexOf(_opt);
+        $scope.questions[_ques].correct.splice(opinReg,1);
+      }
+    }
+    console.log($scope.questions[_ques].correct)
   };
 
   $scope.removeQuestion = function (_ques) {
@@ -157,7 +189,7 @@ app.controller('addCtrl', function ($scope, $http, loginSvc) {
   };
 
   $scope.removeOption = function (_ques, _opt) {
-    $scope.questions[_ques].qtitle;
+    $scope.questions[_ques].options.splice(_opt,1);
   };
 
   $scope.getLevel = function (_level) {
