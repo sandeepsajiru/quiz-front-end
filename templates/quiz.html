@@ -37,8 +37,10 @@
         </label>
       </div>
       </div>
-
-      <div class="alert" ng-show="">{{question.reason}}</div>
+      <div class="panel-body">
+      <div class="alert alert-success" ng-show="correctRegister[$index]">Correct!</div>
+      <div class="alert alert-info" ng-show="displayReason($index)">{{question.reason}}</div>
+      </div>
     </div>
 
     <button ng-click="submitAnswers()" class="btn btn-danger">

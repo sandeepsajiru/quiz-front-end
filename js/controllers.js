@@ -52,7 +52,7 @@ app.controller('quizListCtrl', function ($scope, loginSvc, quizService) {
     $scope.quizzes = qs;
 
     $scope.noOfPages = function () {
-      return Math.ceil($scope.quizzes.length/$scope.pageLength);
+      return Math.ceil($scope.quizzes.length / $scope.pageLength);
     };
 
     console.log($scope.noOfPages());
@@ -74,9 +74,10 @@ app.controller('quizCtrl', function ($scope, $http, $routeParams, quizService, l
         console.log($scope.quiz.questions.length);
         break
       }
-
+    $scope.correctRegister = new Array($scope.quiz.questions.length);
+    $scope.correctRegister.fill(false);
     $scope.answersRegister = new Array($scope.quiz.questions.length);
-    for(i=0;i<$scope.answersRegister.length;i++) {
+    for (i = 0; i < $scope.answersRegister.length; i++) {
       $scope.answersRegister[i] = [];
     }
     console.log($scope.answersRegister);
@@ -88,25 +89,39 @@ app.controller('quizCtrl', function ($scope, $http, $routeParams, quizService, l
     $scope.quizOngoing = true;
   };
 
-  var showReason = function () {
-
+  $scope.displayReason = function (_q) {
+    if ($scope.quiz.questions[_q].qtype === "single" && $scope.answersRegister[_q].length > 0)
+      return true;
+    else
+      return false;
+  };
+  $scope.displayFeedback = function (_q) {
+    return $scope.correctRegister[_q];
   };
 
-  $scope.selectOption = function (parentIndex, index) {
-    $scope.answersRegister[parentIndex] = [index];
-    console.log($scope.answersRegister);
-    showReason();
-  };
+  $scope.selectOption = function (p, i) {
+    $scope.answersRegister[p] = [i];
 
-  $scope.toggleOption = function (parentIndex, index) {
-    if($scope.answersRegister[parentIndex].indexOf(index) === -1)
-      $scope.answersRegister[parentIndex].push(index);
+    if (angular.equals($scope.answersRegister[p], $scope.quiz.questions[p].correct))
+      $scope.correctRegister[p] = true;
     else {
-      let opinReg = $scope.answersRegister[parentIndex].indexOf(index);
-      $scope.answersRegister[parentIndex].splice(opinReg,1);
+      $scope.correctRegister[p] = false;
+    }
+  };
+
+  $scope.toggleOption = function (p, index) {
+    if ($scope.answersRegister[p].indexOf(index) === -1)
+      $scope.answersRegister[p].push(index);
+    else {
+      let opinReg = $scope.answersRegister[p].indexOf(index);
+      $scope.answersRegister[p].splice(opinReg, 1);
+    }
+    if (angular.equals($scope.answersRegister[p], $scope.quiz.questions[p].correct))
+      $scope.correctRegister[p] = true;
+    else {
+      $scope.correctRegister[p] = false;
     }
     console.log($scope.answersRegister);
-    showReason();
   };
 
   $scope.submitAnswers = function () {
@@ -143,7 +158,7 @@ app.controller('addCtrl', function ($scope, $http, loginSvc) {
     qcode: "",
     correct: [0],
     reason: "",
-    options: ['','']
+    options: ['', '']
   }];
 
   $scope.addNewOption = function (_ques) {
@@ -160,7 +175,7 @@ app.controller('addCtrl', function ($scope, $http, loginSvc) {
       qcode: null,
       correct: [],
       reason: "",
-      options: ['','']
+      options: ['', '']
     });
   };
 
@@ -171,25 +186,25 @@ app.controller('addCtrl', function ($scope, $http, loginSvc) {
   });
 
   $scope.setCorrect = function (_ques, _opt) {
-    if($scope.questions[_ques].qtype == "single")
+    if ($scope.questions[_ques].qtype == "single")
       $scope.questions[_ques].correct = [_opt];
     else {
-      if($scope.questions[_ques].correct.indexOf(_opt) === -1)
+      if ($scope.questions[_ques].correct.indexOf(_opt) === -1)
         $scope.questions[_ques].correct.push(_opt);
       else {
         let opinReg = $scope.questions[_ques].correct.indexOf(_opt);
-        $scope.questions[_ques].correct.splice(opinReg,1);
+        $scope.questions[_ques].correct.splice(opinReg, 1);
       }
     }
     console.log($scope.questions[_ques].correct)
   };
 
   $scope.removeQuestion = function (_ques) {
-    $scope.questions.splice(_ques,1);
+    $scope.questions.splice(_ques, 1);
   };
 
   $scope.removeOption = function (_ques, _opt) {
-    $scope.questions[_ques].options.splice(_opt,1);
+    $scope.questions[_ques].options.splice(_opt, 1);
   };
 
   $scope.getLevel = function (_level) {
@@ -248,16 +263,16 @@ app.controller('editCtrl', function ($scope, $http, $routeParams, quizService, l
   $scope.addNewQuestion = function () {
     $scope.questions.push({
       qtitle: "",
-      options: ['','']
+      options: ['', '']
     });
   };
 
   $scope.removeQuestion = function (_ques) {
-    $scope.questions.splice(_ques,1);
+    $scope.questions.splice(_ques, 1);
   };
 
   $scope.removeOption = function (_ques, _opt) {
-    $scope.questions[_ques].options.splice(_opt,1);
+    $scope.questions[_ques].options.splice(_opt, 1);
   };
 
   $scope.update = function () {
