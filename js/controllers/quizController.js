@@ -4,6 +4,7 @@
 
 app.controller('quizCtrl', function ($scope, $http, $routeParams, quizService, loginSvc) {
   var quizid = $routeParams.quizid;
+  $scope.curQues = 0;
 
   quizService.getAllQuizzes().then(function (qarray) {
     // console.log(qarray);
@@ -28,6 +29,14 @@ app.controller('quizCtrl', function ($scope, $http, $routeParams, quizService, l
     $scope.quizOngoing = true;
   };
 
+  $scope.quizProgress = function () {
+    return ($scope.curQues)/$scope.quiz.questions.length*100
+  };
+
+  $scope.correctAnswers = function () {
+    return $scope.correctRegister.filter(function(x){return x===true}).length;
+  };
+
   $scope.displayReason = function (_q) {
     if ($scope.quiz.questions[_q].qtype === "single" && $scope.answersRegister[_q].length > 0)
       return true;
@@ -46,6 +55,7 @@ app.controller('quizCtrl', function ($scope, $http, $routeParams, quizService, l
     else {
       $scope.correctRegister[p] = false;
     }
+    console.log($scope.answersRegister[p]);
   };
 
   $scope.toggleOption = function (p, index) {
@@ -60,7 +70,7 @@ app.controller('quizCtrl', function ($scope, $http, $routeParams, quizService, l
     else {
       $scope.correctRegister[p] = false;
     }
-    console.log($scope.answersRegister);
+    console.log($scope.answersRegister[p]);
   };
 
   $scope.submitAnswers = function () {
@@ -78,8 +88,6 @@ app.controller('quizCtrl', function ($scope, $http, $routeParams, quizService, l
       $scope.statusval = response.status;
       $scope.statustext = response.statusText;
       $scope.headers = response.headers();
-
     });
   }
 });
-

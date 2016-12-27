@@ -2,8 +2,8 @@
   <div class="page-header">
     <h1>{{quiz.name}} <span class="badge">{{quiz.level}}</span></h1>
   </div>
-  <div class="col-md-8 col-md-offset-1">
-    <div class="panel panel-default" ng-repeat="question in quiz.questions">
+  <div class="col-md-8 col-md-offset-2" ng-show="quizProgress()<100">
+    <div class="panel panel-default" ng-repeat="question in quiz.questions | pager: curQues | limitTo: 1">
       <div class="panel-heading">
         <h3 class="quiz-ques">{{question.qtitle}}</h3>
       </div>
@@ -17,34 +17,65 @@
       </div>
 
       <div ng-show="question.qtype === 'single'">
-      <div class="panel-body quiz-options"  ng-repeat="option in question.options" data-toggle="buttons">
-        <label ng-click="selectOption($parent.$index,$index)" class="btn btn-lg btn-primary btn-block">
+        <div class="panel-body quiz-options" ng-repeat="option in question.options" data-toggle="buttons">
+          <label ng-click="selectOption(question.qid,$index)" class="btn btn-lg btn-primary btn-block">
           <span class="btn-label">
-            <i class="glyphicon" ng-class="answersRegister[$parent.$index].indexOf($index) !== -1 ? 'glyphicon-ok-sign' : 'glyphicon-ok-circle'"></i>
+            <i class="glyphicon"
+               ng-class="answersRegister[question.qid].indexOf($index) !== -1 ? 'glyphicon-ok-sign' : 'glyphicon-ok-circle'"></i>
           </span>
-          <input type="radio" ng-model="option" name="{{question}}" value="{{option}}">{{option}}
-        </label>
-      </div>
+            <input type="radio" ng-model="option" name="{{question}}" value="{{option}}">{{option}}
+          </label>
+        </div>
       </div>
 
       <div ng-show="question.qtype === 'multi'">
-      <div class="panel-body quiz-options" ng-repeat="option in question.options" data-toggle="buttons">
-        <label ng-click="toggleOption($parent.$index,$index)" class="btn btn-lg btn-primary btn-block">
+        <div class="panel-body quiz-options" ng-repeat="option in question.options" data-toggle="buttons">
+          <label ng-click="toggleOption(question.qid,$index)" class="btn btn-lg btn-primary btn-block">
           <span class="btn-label">
-            <i class="glyphicon" ng-class="answersRegister[$parent.$index].indexOf($index) !== -1 ? 'glyphicon-record' : 'glyphicon-unchecked'"></i>
+            <i class="glyphicon"
+               ng-class="answersRegister[question.qid].indexOf($index) !== -1 ? 'glyphicon-record' : 'glyphicon-unchecked'"></i>
           </span>
-          <input type="checkbox" ng-model="option" name="{{question}}" value="{{option}}">{{option}}
-        </label>
-      </div>
+            <input type="checkbox" ng-model="option" name="{{question}}" value="{{option}}">{{option}}
+          </label>
+        </div>
       </div>
       <div class="panel-body">
-      <div class="alert alert-success" ng-show="correctRegister[$index]">Correct!</div>
-      <div class="alert alert-info" ng-show="displayReason($index)">{{question.reason}}</div>
+        <div class="alert alert-success" ng-show="correctRegister[question.qid]">Correct!</div>
+        <div class="alert alert-info" ng-show="displayReason(question.qid)">{{question.reason}}</div>
       </div>
     </div>
-
-    <button ng-click="submitAnswers()" class="btn btn-danger">
-      <i class="glyphicon glyphicon-chevron-righticon-"></i> Submit
-    </button>
   </div>
+    <div class="col-md-4 col-md-offset-4 pager-div" ng-show="quizProgress()<100">
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" ng-style="{width:quizProgress()+'%'}">{{quizProgress()}} % completed</div>
+      </div>
+      <ul class="div-center">
+        <li>
+          <button class="btn" type="button" ng-disabled="curQues == 0"
+                  ng-click="curQues = curQues-1">Prev
+          </button>
+        </li>
+        <li><span> Question {{curQues + 1}} of {{ quiz.questions.length }} </span></li>
+        <li>
+          <button class="btn" type="button" ng-click="curQues = curQues+1">Next</button>
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6 col-md-offset-3">
+
+        <div class="panel panel-success" ng-show="quizProgress() === 100">
+          <div class="panel-heading">
+            <h3 class="panel-title">Quiz finished!</h3>
+          </div>
+          <div class="panel-body">
+            You got {{correctAnswers()}} out of {{quiz.questions.length}} questions correct. Click submit to finish the quiz.
+          </div>
+        </div>
+
+      <div>
+        <button ng-click="submitAnswers()" class="btn btn-danger">
+          <i class="glyphicon glyphicon-chevron-righticon-"></i> Submit
+        </button>
+      </div>
+    </div>
 </div>

@@ -41,7 +41,7 @@
       },
       {
         "qid": 2,
-        "qtitle": "Question 2",
+        "qtitle": "Question 3",
         "qtype": "multi",
         "qimg": "",
         "qvideo": "",
@@ -57,7 +57,7 @@
       },
       {
         "qid": 3,
-        "qtitle": "Question 2",
+        "qtitle": "Question 4",
         "qtype": "single",
         "qimg": "",
         "qvideo": "",
@@ -73,7 +73,7 @@
       },
       {
         "qid": 4,
-        "qtitle": "Question 2",
+        "qtitle": "Question 5",
         "qtype": "single",
         "qimg": "",
         "qvideo": "",
