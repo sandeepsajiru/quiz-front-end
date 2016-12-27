@@ -9,10 +9,10 @@
       <a href="/" class="navbar-brand">Mentorpick</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
+      <ul ng-show="username" class="nav navbar-nav">
         <li><a href="/all">All Quizzes</a></li>
-        <li><a href="#">History</a></li>
-        <li><a href="#">Leaderboard</a></li>
+        <li><a href="/history">History</a></li>
+        <li><a href="/leaderboard">Leaderboard</a></li>
         <a ng-show="currentRole === 'author'" ng-href="/add"><button class="btn btn-primary navbar-btn">Create new</button></a>
       </ul>
       <ul ng-show="username" class="nav navbar-nav navbar-right">

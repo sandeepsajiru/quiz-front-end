@@ -17,6 +17,12 @@ app.config(function ($routeProvider, $locationProvider) {
   }).when("/edit/:quizid", {
     templateUrl: "templates/edit.html",
     controller: "editCtrl"
+  }).when("/history", {
+    templateUrl: "templates/history.html",
+    controller: "histCtrl"
+  }).when("/leaderboard", {
+    templateUrl: "templates/leaderboard.html",
+    controller: "leaderCtrl"
   }).otherwise({
     redirectTo: '/login'
   });

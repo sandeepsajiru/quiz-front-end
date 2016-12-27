@@ -1,0 +1,32 @@
+<div>
+  <div class="page-header">
+    <h1>History
+      <small>for {{user.username}}</small>
+    </h1>
+  </div>
+  <div class="panel panel-default">
+    <!-- Default panel contents -->
+    <div class="panel-heading">Total Score: {{user.total}}</div>
+
+
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Quiz ID</th>
+        <th>Quiz Name</th>
+        <th>Score</th>
+        <th>Date Taken</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      <tr ng-repeat="attempt in user.history">
+        <td>{{attempt.quizid}}</td>
+        <td>{{getQuizName(attempt.quizid)}}</td>
+        <td>{{attempt.score}}</td>
+        <td>{{parseDate(attempt.datetaken)}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

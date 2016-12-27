@@ -43,3 +43,21 @@ app.factory('loginSvc', function () {
     }
   }
 });
+
+app.factory('histSvc', function ($http) {
+  var url = './data/history.json';
+  var histSvc = {};
+
+  getData = function () {
+    return $http.get(url).then(function (res) {
+      return res.data
+    })
+  };
+
+  var histData = getData();
+  histSvc.getHistory = function () {
+    return histData;
+  };
+
+  return histSvc
+});

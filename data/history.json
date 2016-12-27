@@ -1,0 +1,132 @@
+[
+  {
+    "userid": 1,
+    "username": "palash",
+    "total": 160,
+    "history": [
+      {
+        "quizid": 1,
+        "score": 50,
+        "datetaken": "2012-04-23T18:25:43.511Z"
+      },
+      {
+        "quizid": 2,
+        "score": 40,
+        "datetaken": "2012-04-23T18:25:43.511Z"
+      },
+      {
+        "quizid": 3,
+        "score": 50,
+        "datetaken": "2012-04-23T18:25:43.511Z"
+      },
+      {
+        "quizid": 4,
+        "score": 20,
+        "datetaken": "2012-04-23T18:25:43.511Z"
+      }
+    ]
+  },
+  {
+    "userid": 2,
+    "username": "gopalcm",
+    "total": 70,
+    "history": [
+      {
+        "quizid": 1,
+        "score": 50,
+        "datetaken": "2012-04-23T18:25:43.511Z"
+      },
+      {
+        "quizid": 2,
+        "score": 10,
+        "datetaken": "2012-03-23T18:25:43.511Z"
+      },
+      {
+        "quizid": 3,
+        "score": 10,
+        "datetaken": "2016-04-23T18:25:43.511Z"
+      }
+    ]
+  },
+  {
+    "userid": 3,
+    "username": "suresh",
+    "total": 100,
+    "history": [
+      {
+        "quizid": 1,
+        "score": 50,
+        "datetaken": "2012-04-23T18:25:43.511Z"
+      },
+      {
+        "quizid": 2,
+        "score": 10,
+        "datetaken": "2012-04-23T18:25:43.511Z"
+      },
+      {
+        "quizid": 3,
+        "score": 10,
+        "datetaken": "2012-04-23T18:25:43.511Z"
+      },
+      {
+        "quizid": 5,
+        "score": 30,
+        "datetaken": "2012-04-23T18:25:43.511Z"
+      }
+    ]
+  },
+  {
+    "userid": 4,
+    "username": "Patricia Lebsack",
+    "total": 200,
+    "history": [
+      {
+        "quizid": 1,
+        "score": 50,
+        "datetaken": "2012-04-23T18:25:43.511Z"
+      },
+      {
+        "quizid": 2,
+        "score": 50,
+        "datetaken": "2012-04-23T18:25:43.511Z"
+      },
+      {
+        "quizid": 5,
+        "score": 50,
+        "datetaken": "2012-04-23T18:25:43.511Z"
+      },
+      {
+        "quizid": 6,
+        "score": 50,
+        "datetaken": "2012-04-23T18:25:43.511Z"
+      }
+    ]
+  },
+  {
+    "userid": 5,
+    "username": "chelsey",
+    "total": 180,
+    "history": [
+      {
+        "quizid": 1,
+        "score": 50,
+        "datetaken": "2012-04-23T18:25:43.511Z"
+      },
+      {
+        "quizid": 4,
+        "score": 50,
+        "datetaken": "2012-04-23T18:25:43.511Z"
+      },
+      {
+        "quizid": 5,
+        "score": 50,
+        "datetaken": "2012-04-23T18:25:43.511Z"
+      },
+      {
+        "quizid": 6,
+        "score": 30,
+        "datetaken": "2012-04-23T18:25:43.511Z"
+      }
+    ]
+  }
+]
